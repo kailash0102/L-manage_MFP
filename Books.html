@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<h1>List of all Books</h1>
+<a href="index.html">Home</a>
+<head>
+  <title>Book Information</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    h1{
+      background: white;
+      color: black;
+      border: 1.5px solid black;
+    }
+    a{
+      width: 130px;
+      height: 50px;
+      background: transparent;
+      border: 2px solid black;
+      outline: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 2.1em;
+      color:black;
+      font-weight:500px;
+      margin-left:10px;
+      transition: .5s;
+
+    }
+
+    th {
+      cursor: pointer;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <div class="col">
+      <div class="card card-body">
+        <input id="search-input" class="form-control" type="text">
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <thead class="bg-info">
+      <tr>
+        <th data-colname="bookName" data-order="desc">Book Name</th>
+        <th data-colname="authorName" data-order="desc">Author</th>
+        <th data-colname="genre" data-order="desc">Genre</th>
+        <th data-colname="year" data-order="desc">Year of Publishing</th>
+      </tr>
+    </thead>
+    <tbody id="myTable">
+
+    </tbody>
+  </table>
+
+  <script>
+    const bookData = [
+      {
+        bookName: "1984",
+        authorName: "George Orwell",
+        genre: "Dystopian",
+        year: 1949
+      },
+  {
+    bookName: "The Kite Runner",
+    authorName: "Khaled Hosseini",
+    genre: "Historical Fiction",
+    year: 2003
+  },
+  {
+    bookName: "Crime and Punishment",
+    authorName: "Fyodor Dostoevsky",
+    genre: "Psychological Thriller",
+    year: 1866
+  },
+  {
+    bookName: "The Picture of Dorian Gray",
+    authorName: "Oscar Wilde",
+    genre: "Gothic",
+    year: 1890
+  },
+  {
+    bookName: "Frankenstein",
+    authorName: "Mary Shelley",
+    genre: "Gothic",
+    year: 1818
+  },
+  {
+    bookName: "The Chronicles of Narnia",
+    authorName: "C.S. Lewis",
+    genre: "Fantasy",
+    year: 1950
+  },
+  {
+    bookName: "Slaughterhouse-Five",
+    authorName: "Kurt Vonnegut",
+    genre: "Science Fiction",
+    year: 1969
+  },
+  {
+    bookName: "The Book Thief",
+    authorName: "Markus Zusak",
+    genre: "Historical Fiction",
+    year: 2005
+  },
+  {
+    bookName: "The Handmaid's Tale",
+    authorName: "Margaret Atwood",
+    genre: "Dystopian",
+    year: 1985
+  },
+  {
+    bookName: "Beloved",
+    authorName: "Toni Morrison",
+    genre: "Historical Fiction",
+    year: 1987
+  },
+  {
+    bookName: "The Grapes of Wrath",
+    authorName: "John Steinbeck",
+    genre: "Classic",
+    year: 1939
+  },
+  {
+    bookName: "The Hitchhiker's Guide to the Galaxy",
+    authorName: "Douglas Adams",
+    genre: "Science Fiction",
+    year: 1979
+  },
+  {
+    bookName: "Gone with the Wind",
+    authorName: "Margaret Mitchell",
+    genre: "Historical Fiction",
+    year: 1936
+  },
+  {
+    bookName: "One Hundred Years of Solitude",
+    authorName: "Gabriel Garcia Marquez",
+    genre: "Magical Realism",
+    year: 1967
+  },
+  {
+    bookName: "Catch-22",
+    authorName: "Joseph Heller",
+    genre: "Satire",
+    year: 1961
+  },
+  {
+    bookName: "The Count of Monte Cristo",
+    authorName: "Alexandre Dumas",
+    genre: "Adventure",
+    year: 1844
+  },
+  {
+    bookName: "The Sun Also Rises",
+    authorName: "Ernest Hemingway",
+    genre: "Modernist",
+    year: 1926
+  },
+  {
+    bookName: "Wuthering Heights",
+    authorName: "Emily Bronte",
+    genre: "Gothic",
+    year: 1847
+  },
+  {
+    bookName: "A Game of Thrones",
+    authorName: "George R.R. Martin",
+    genre: "Fantasy",
+    year: 1996
+  },
+  {
+    bookName: "The Shining",
+    authorName: "Stephen King",
+    genre: "Horror",
+    year: 1977
+  },
+  {
+    bookName: "The Secret History",
+    authorName: "Donna Tartt",
+    genre: "Mystery",
+    year: 1992
+  },
+  {
+    bookName: "The Little Prince",
+    authorName: "Antoine de Saint-Exupery",
+    genre: "Children's",
+    year: 1943
+  },
+  {
+    bookName: "Anna Karenina",
+    authorName: "Leo Tolstoy",
+    genre: "Classical Fiction",
+    year: 1877
+  },
+  {
+    bookName: "The Scarlet Letter",
+    authorName: "Nathaniel Hawthorne",
+    genre: "Romance",
+    year: 1850
+  },
+  {
+    bookName: "The Girl with the Dragon Tattoo",
+    authorName: "Stieg Larsson",
+    genre: "Mystery",
+    year: 2005
+  },
+  {
+    bookName: "The Divine Comedy",
+    authorName: "Dante Alighieri",
+    genre: "Epic",
+    year: 1320
+  },
+  {
+    bookName: "The Secret Garden",
+    authorName: "Frances Hodgson Burnett",
+    genre: "Children's",
+    year: 1911
+  },
+  {
+    bookName: "The Adventures of Tom Sawyer",
+    authorName: "Mark Twain",
+    genre: "Adventure",
+    year: 1876
+  },
+  {
+    bookName: "Norwegian Wood",
+    authorName: "Haruki Murakami",
+    genre: "Coming-of-age",
+    year: 1987
+  },
+  {
+    bookName: "The Da Vinci Code",
+    authorName: "Dan Brown",
+    genre: "Thriller",
+    year: 2003
+  },
+  {
+    bookName: "The Lord of the Flies",
+    authorName: "William Golding",
+    genre: "Allegory",
+    year: 1954
+  },
+  {
+    bookName: "The Adventures of Huckleberry Finn",
+    authorName: "Mark Twain",
+    genre: "Adventure",
+    year: 1884
+  },
+  {
+    bookName: "The Road",
+    authorName: "Cormac McCarthy",
+    genre: "Post-apocalyptic",
+    year: 2006
+  },
+  {
+    bookName: "The Name of the Rose",
+    authorName: "Umberto Eco",
+    genre: "Mystery",
+    year: 1980
+  },
+  {
+    bookName: "The Old Man and the Sea",
+    authorName: "Ernest Hemingway",
+    genre: "Novella",
+    year: 1952
+  },
+  {
+    bookName: "Fahrenheit 451",
+    authorName: "Ray Bradbury",
+    genre: "Dystopian",
+    year: 1953
+  },
+  {
+    bookName: "Les Miserables",
+    authorName: "Victor Hugo",
+    genre: "Historical Fiction",
+    year: 1862
+  },
+  {
+    bookName: "The Time Traveler's Wife",
+    authorName: "Audrey Niffenegger",
+    genre: "Romance",
+    year: 2003
+  },
+  {
+    bookName: "A Tale of Two Cities",
+    authorName: "Charles Dickens",
+    genre: "Historical Fiction",
+    year: 1859
+  },
+  {
+    bookName: "A Clockwork Orange",
+    authorName: "Anthony Burgess",
+    genre: "Dystopian",
+    year: 1962
+  },
+  {
+    bookName: "The Brothers Karamazov",
+    authorName: "Fyodor Dostoevsky",
+    genre: "Philosophical Fiction",
+    year: 1880
+  },
+  {
+    bookName: "The Color Purple",
+    authorName: "Alice Walker",
+    genre: "Epistolary Fiction",
+    year: 1982
+  },
+  {
+    bookName: "Middlemarch",
+    authorName: "George Eliot",
+    genre: "Realist",
+    year: 1871
+  },
+  {
+    bookName: "The Picture of Dorian Gray",
+    authorName: "Oscar Wilde",
+    genre: "Gothic",
+    year: 1890
+  },
+  {
+    bookName: "The Adventures of Sherlock Holmes",
+    authorName: "Arthur Conan Doyle",
+    genre: "Mystery",
+    year: 1892
+  },
+  {
+    bookName: "The Giver",
+    authorName: "Lois Lowry",
+    genre: "Dystopian",
+    year: 1993
+  },
+  {
+    bookName: "The Stranger",
+    authorName: "Albert Camus",
+    genre: "Existential",
+    year: 1942
+  },
+  {
+    bookName: "The Bell Jar",
+    authorName: "Sylvia Plath",
+    genre: "Autobiographical Fiction",
+    year: 1963
+  },
+  {
+    bookName: "The Stand",
+    authorName: "Stephen King",
+    genre: "Post-apocalyptic",
+    year: 1978
+  },
+  {
+    bookName: "The Pillars of the Earth",
+    authorName: "Ken Follett",
+    genre: "Historical Fiction",
+    year: 1989
+  },
+  {
+    bookName: "The Fault in Our Stars",
+    authorName: "John Green",
+    genre: "Young Adult",
+    year: 2012
+  },
+  {
+    bookName: "The Name of the Wind",
+    authorName: "Patrick Rothfuss",
+    genre: "Fantasy",
+    year: 2007
+  },
+  {
+    bookName: "The Girl on the Train",
+    authorName: "Paula Hawkins",
+    genre: "Mystery",
+    year: 2015
+  },
+  {
+    bookName: "The Adventures of Sherlock Holmes",
+    authorName: "Arthur Conan Doyle",
+    genre: "Mystery",
+    year: 1892
+  },
+  {
+    bookName: "The Giver",
+    authorName: "Lois Lowry",
+    genre: "Dystopian",
+    year: 1993
+  },
+  {
+    bookName: "The Stranger",
+    authorName: "Albert Camus",
+    genre: "Existential",
+    year: 1942
+  },
+  {
+    bookName: "The Bell Jar",
+    authorName: "Sylvia Plath",
+    genre: "Autobiographical Fiction",
+    year: 1963
+  },
+  {
+    bookName: "The Stand",
+    authorName: "Stephen King",
+    genre: "Post-apocalyptic",
+    year: 1978
+  },
+  {
+    bookName: "The Pillars of the Earth",
+    authorName: "Ken Follett",
+    genre: "Historical Fiction",
+    year: 1989
+  },
+  {
+    bookName: "The Fault in Our Stars",
+    authorName: "John Green",
+    genre: "Young Adult",
+    year: 2012
+  },
+  {
+    bookName: "The Name of the Wind",
+    authorName: "Patrick Rothfuss",
+    genre: "Fantasy",
+    year: 2007
+  },
+  {
+    bookName: "The Girl on the Train",
+    authorName: "Paula Hawkins",
+    genre: "Mystery",
+    year: 2015
+  }
+
+      // Add more books here...
+    ];
+
+    function buildTable(data) {
+      var table = $('#myTable');
+      table.empty();
+
+      for (var i = 0; i < data.length; i++) {
+        var row = `<tr>
+                      <td>${data[i].bookName}</td>
+                      <td>${data[i].authorName}</td>
+                      <td>${data[i].genre}</td>
+                      <td>${data[i].year}</td>
+                 </tr>`;
+        table.append(row);
+      }
+    }
+
+    $(document).ready(function () {
+      buildTable(bookData);
+
+      $('th').click(function () {
+        var column = $(this).data('colname');
+        var order = $(this).data('order');
+        bookData.sort(function (a, b) {
+          var x = a[column];
+          var y = b[column];
+          if (order === 'desc') {
+            return x > y ? -1 : x < y ? 1 : 0;
+          } else {
+            return x < y ? -1 : x > y ? 1 : 0;
+          }
+        });
+        buildTable(bookData);
+        $(this).data('order', order === 'desc' ? 'asc' : 'desc');
+      });
+
+      $('#search-input').keyup(function () {
+        var value = $(this).val().toLowerCase();
+        var filteredData = bookData.filter(function (item) {
+          return (
+            item.bookName.toLowerCase().includes(value) ||
+            item.authorName.toLowerCase().includes(value) ||
+            item.genre.toLowerCase().includes(value) ||
+            item.year.toString().includes(value)
+          );
+        });
+        buildTable(filteredData);
+      });
+    });
+  </script>
+</body>
+</html>

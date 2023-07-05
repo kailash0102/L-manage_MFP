@@ -1,0 +1,354 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 99;
+
+}
+section{
+  padding: 100px 200px;oadd
+}
+.home{
+  position: static;
+  width: 80%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.home .content{
+  z-index: 888;
+  width: 70%
+  margin-top: 50px;
+}
+.home .content h1{
+  font-size: 4em;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  line-height: 75px;
+  margin-bottom: 40px;
+}
+.home .content h1 span{
+  font-size: 1.2em;
+  color: white;
+  font-weight: 600;
+
+}
+.home .content p{
+  background: #faebd7;
+  border-radius: 2px;
+  margin-bottom: 65px;
+  font-size: 1.1em;
+  font-style: italic;
+  padding: 15px 35px;
+
+}
+.home .content a{
+  background: white;
+  padding: 15px 35px;
+  color: black;
+  font-size: 1.1em;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 2px;
+}
+@media (max-width : 1040px) {
+  header{
+    padding: 12px 20px;
+}
+section {
+    padding: 100px 20px;
+}
+header .navigation{
+  display: none;
+}
+}
+.logo{
+  font-size: 3em;
+
+  color: Black;
+  user-select: none;
+}
+.navigation a{
+  position: relative;
+  font-size: 1.1em;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 40px;
+
+}
+.navigation a::after{
+  content:'';
+  bottom: -6px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: white;
+  transform-origin: left;
+  border-radius: 5px;
+  transform:scaleX(0);
+  transition: transform.5s;
+
+  }
+
+.navigation a:hover::after{
+  transform: scale(1);
+}
+
+.navigation .name-nav{
+  width: 180px;
+  height: 35px;
+  background: transparent;
+  border: 1.5px solid white;
+  outline: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: white;
+
+;
+
+}
+.navigation .btnLogin-popup{
+  width: 130px;
+  height: 50px;
+  background: transparent;
+  border: 2px solid white;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: black;
+  font-weight:500px;
+  margin-left: 40px;
+  transition: .5s;
+
+
+}
+.navigation .btnLogin-popup:hover{
+  background: Darkred;
+  color: white;
+
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('pexels-pixabay-261806.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.wrapper{
+  position: relative;
+  width: 400px;
+  height: 440px;
+  background: transparent;
+  border:2px solid rgba(255,255,255,.5);
+  border-radius: 20px;
+  backdrop-filter:blur(20px);
+  box-shadow: 0 0 30px rgba(0,0,0,.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transform: scale(0);
+  transition:transform .4s ease , height .2s ease;
+
+}
+.wrapper.active-popup{
+  transform: scale(1);
+}
+
+
+.wrapper.active{
+  height: 520px;
+}
+.wrapper .form-box{
+  width: 100%;
+  padding: 40px;
+
+}
+.wrapper .form-box.login{
+  transition: transform .18s ease;
+  transform: translateX(0);
+}
+.wrapper.active .form-box.login{
+  transition: none;
+  transform: translateX(-400px);
+}
+.wrapper .form-box.register{
+  position: absolute;
+  transition: none;
+  transform: translateX(400px);
+
+}
+.wrapper.active .form-box.register{
+  transition: :transform .18s ease;
+  transform: translateX(0);
+}
+
+.wrapper .icon-close{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45px;
+  height: 45px;
+  background:black;
+  font-size: 2em;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom-left-radius: 20px;
+  cursor: pointer;
+  z-index: 1;
+}
+.form-box h2{
+  font-size: 2em;
+  color: white;
+  text-align: center;
+}
+.input-box{
+  position: relative;
+  width: 100%;
+  height:50px;
+  border-bottom: 2px solid black;
+  margin: 30px 0;
+}
+.input-box label{
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  font-size: 1em;
+  color: black;
+  font-weight: 500;
+  pointer-events: none;
+  transition: .5s;
+
+}
+.input-box input:focus~label,
+.input-box input:valid~label{
+  top:-5px;
+}
+.input-box input{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  color: black;
+  font-weight: 600;
+  padding: 0 35px 0 5px;
+}
+.input-box .icon{
+  position: absolute;
+  right: 8px;
+  font-size: 1.2em;
+  color: black;
+  line-height: 57px;
+}
+.remember-forgot {
+font-size: .9em;
+color:black;
+font-weight: 500;
+margin: -15px 0 15px;
+display: flex;
+justify-content:space-between;
+}
+.remember-forgot label input {
+  accent-color:black;
+  margin-right: 3px;
+}
+.remember-forgot a{
+  color: black;
+  text-decoration:none;
+
+}
+.remember-forgot a:hover{
+  text-decoration: underline;
+}
+.btn{
+  width: 100%;
+  height: 45px;
+  background: black;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  color: white;
+  font-weight: 500;
+}
+.login-register{
+  font-size: .9em;
+  color: black;
+  text-align: center;
+  font-weight: 500;
+  margin: 25px 0 10px;
+
+}
+.login-register p a {
+  color: black;
+  text-decoration: none;
+  font-weight:600;
+}
+.login-register p a:hover{
+  text-decoration: underline;
+}
+.container{
+  display:center;
+  width: 70%;
+  margin-bottom: 30px;
+
+}
+#root{
+  width: 60%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+}
+.sidebar{
+  width: 170%;
+  border-radius: 10px;
+  background-color: white;
+  margin-left: 20px;
+  padding: 15px;
+  text-align:center;
+
+}
+.head{
+  background-color:black;
+  border-radius: 3px;
+  height: 40px;
+  padding:10px;
+  margin-bottom: 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+.foot{
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0px;
+  padding: 10px 0px;
+  border-top: 1px solid black;
+}

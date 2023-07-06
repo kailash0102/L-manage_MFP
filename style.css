@@ -316,10 +316,25 @@ justify-content:space-between;
 }
 .container{
   display:center;
+  color: black;
   width: 70%;
   margin-bottom: 30px;
 
 }
+.uu{
+  position: absolute;
+  top: 90px;
+  left: 30px;
+  font-weight: 500;
+  color: black;
+
+}
+
+
+
+
+
+
 #root{
   width: 60%;
   display: grid;

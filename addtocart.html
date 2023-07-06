@@ -1,23 +1,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Cart</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-books.com</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .uu{
+      position: fixed;
+      top: 120px;
+      left: 40px;
+    }
+    .no{
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color:floralwhite;
+      padding: 15px;
+      border-radius: 5px;
+    }
+    .sidebar {
+      position: absolute;
+      top: 3;
+      right: 15px;
+      width: 40%;
+      border-radius: 5px;
+      background-color: white;
+      margin-left: 20px;
+      padding: 15px;
+      text-align: center;
+    }
+    .table,
+    th,
+    td {
+      border: 1px solid black;
+    }
+    .add-to-cart-button {
+      display: block;
+      margin: 10px auto;
+    }
+  </style>
 </head>
+
 <body>
   <header>
-    <h2 class="logo">My Cart</h2>
+    <h2 class="logo">E-Library</h2>
     <nav class="navigation">
       <a href="index.html">Home</a>
+      <a href="about.html">About</a>
       <a href="Books.html">Books</a>
       <a href="contact.html">Contact</a>
-      <input type="text" class="name-nav", placeholder="Search..">
+      <a href="addtocart.html">My Cart</a>
+      <button class="btnLogin-popup">Login</button>
     </nav>
   </header>
 
+  <div class="sidebar">
+    <h1>Cart</h1>
+    <ul id="cart-items"></ul>
+    <p id="total-price">Total Price: $0</p>
+  </div>
+
+  <div class="uu">
+    <h1>Available Books List</h1>
+    <div id="root" class="row">
+      <div class="col-md-6">
+        <div class="product"></div>
+      </div>
+      <div class="col-md-6">
+        <div class="product"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="no">
+    <table>
+      <tr>
+        <th>Book Name</th>
+        <th>Price</th>
+        <th>Add to Cart</th>
+      </tr>
+      <tr>
+        <td>The Hitchhiker's Guide to the Galaxy</td>
+        <td>Rs.150</td>
+        <td><button onclick="addToCart('The Hitchhiker\'s Guide to the Galaxy', 150)" class="btn btn-primary add-to-cart-button">Add to Cart</button></td>
+      </tr>
+      <tr>
+        <td>The Sun Also Rises</td>
+        <td>Rs.140</td>
+        <td><button onclick="addToCart('The Sun Also Rises', 140)" class="btn btn-primary add-to-cart-button">Add to Cart</button></td>
+      </tr>
+      <tr>
+        <td>A Game of Thrones</td>
+        <td>Rs.130</td>
+        <td><button onclick="addToCart('A Game of Thrones', 130)" class="btn btn-primary add-to-cart-button">Add to Cart</button></td>
+      </tr>
+      <tr>
+        <td>The Little Prince</td>
+        <td>Rs.120</td>
+        <td><button onclick="addToCart('The Little Prince', 120)" class="btn btn-primary add-to-cart-button">Add to Cart</button></td>
+      </tr>
+      <tr>
+        <td>The Adventures of Huckleberry Finn</td>
+        <td>Rs.110</td>
+        <td><button onclick="addToCart('The Adventures of Huckleberry Finn', 110)" class="btn btn-primary add-to-cart-button">Add to Cart</button></td>
+      </tr>
+      <tr>
+        <td>A Tale of Two Cities</td>
+        <td>Rs.100</td>
+        <td><button onclick="addToCart('A Tale of Two Cities', 100)" class="btn btn-primary add-to-cart-button">Add to Cart</button></td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    // Array to store the cart items
+    var cartItems = [];
+
+    // Function to add an item to the cart
+    function addToCart(name, price) {
+      cartItems.push({ name: name, price: price });
+      updateCart();
+    }
+
+    // Function to update the cart display
+    function updateCart() {
+      var cartList = document.getElementById('cart-items');
+      var totalPrice = document.getElementById('total-price');
+      cartList.innerHTML = '';
+      var total = 0;
+
+      // Loop through cart items and display them in the cart list
+      for (var i = 0; i < cartItems.length; i++) {
+        var item = cartItems[i];
+        var listItem = document.createElement('li');
+        listItem.innerHTML = item.name + ' - $' + item.price;
+        cartList.appendChild(listItem);
+        total += item.price;
+      }
+
+      // Update the total price
+      totalPrice.innerHTML = 'Total Price: $' + total.toFixed(2);
+    }
+  </script>
 </body>
 </html>
